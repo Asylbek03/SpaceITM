@@ -22,3 +22,6 @@ create table space_categories(
 );
 
 create sequence spaceitm_users_seq increment 1 start 1;
+
+
+SELECT * FROM pg_database;
