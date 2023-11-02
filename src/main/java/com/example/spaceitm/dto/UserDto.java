@@ -12,6 +12,7 @@ public class UserDto {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		setRole("USER");
 		this.fullname = fullname;
 	}
 

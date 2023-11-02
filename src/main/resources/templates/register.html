@@ -4,37 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-     <link rel="stylesheet" th:href="@{../css/styles.css}">
+    <link rel="stylesheet" th:href="@{../css/styles.css}">
 </head>
 <body>
-    <div class="registration-main">
-        <div class="message" th:if="${message != null}">
-           [[${message}]]
+<div class="registration-main">
+    <div class="container">
+        <div class="back-main">
+            <a th:href="@{/index}">
+                <button class="back-main-button">Назад на главную</button>
+            </a>
         </div>
-        <h2>Registration Form</h2>
-        <form 
-         th:action="@{/registration}"
-         method="post"
-         role="form"
-         th:object="${user}"
-        >
-            <div class="form-group">
-                <label for="fullname">Fullname:</label>
-                <input th:field="*{fullname}" type="text" id="fullname" name="fullname" placeholder="Enter your fullname" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input th:field="*{email}" type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input th:field="*{password}" type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <input type="submit" value="Register">
-        </form>
-        
+        <div class="registration-box">
+            <form
+                    th:action="@{/register}"
+                    method="post"
+                    role="form"
+                    th:object="${user}"
+            >
+
+                <div class="registration-title">
+                    Регистрация
+                </div>
+                <input th:field="*{fullname}" type="text" class="registration-input Full Name" id="fullname"
+                       name="fullname"
+                       placeholder="Enter your fullname" required>
+                <input th:field="*{email}" type="email" class="registration-input email" id="email" name="email"
+                       placeholder="Enter your email" required>
+                <input th:field="*{password}" type="password" class="registration-input password" id="password"
+                       name="password" placeholder="Enter your password" required>
+
+                <button class="registration-button">
+                    Зарегестрироваться
+                </button>
+
+
+                <div class="message" th:if="${message != null}">
+                    [[${message}]]
+                </div>
+
+            </form>
+            <a th:href="@{/login}">
+                <button class="registration-button">Авторизация</button>
+            </a>
+        </div>
     </div>
+</div>
 </body>
 </html>

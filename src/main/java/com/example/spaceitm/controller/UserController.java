@@ -23,12 +23,12 @@ public class UserController {
 	private UserService userService;
 
 
-	@GetMapping("/registration")
+	@GetMapping("/register")
 	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto) {
 		return "register";
 	}
 
-	@PostMapping("/registration")
+	@PostMapping("/register")
 	public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
 		userService.save(userDto);
 		model.addAttribute("message", "Registered Successfuly!");
@@ -40,11 +40,11 @@ public class UserController {
 		return "login";
 	}
 
-	@GetMapping("user-page")
+	@GetMapping("index")
 	public String userPage (Model model, Principal principal) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
-		return "user";
+		return "index";
 	}
 
 	@GetMapping("admin-page")
