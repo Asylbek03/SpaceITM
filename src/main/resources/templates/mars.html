@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/apod.css">
+    <title>Photo of day</title>
+</head>
+
+<body>
+
+<div class="main-header">
+    <div class="header-buttons-1">
+        <a th:href="@{/profile}">
+            <button class="header-button">
+                На главную
+            </button>
+        </a>
+    </div>
+</div>
+<h1>Картинки из марса</h1>
+
+
+<table id="TableData" style="margin-bottom: 20px; align-content: center">
+    <tbody class="ui-table-tbody">
+    <tr th:each="photovalueiter : ${marsRoverPhotos}" style="align-content: center">
+        <td style="align-items: center"><img th:src="${photovalueiter.img_src}" class="img-fluid" alt="Image" style="width: 40%; height: 40%; "></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

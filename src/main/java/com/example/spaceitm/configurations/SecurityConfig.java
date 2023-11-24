@@ -36,8 +36,8 @@ public class SecurityConfig {
 		http.csrf(c -> c.disable())
 		
 		.authorizeHttpRequests(request -> request.requestMatchers("/admin-page")
-				.hasAuthority("ADMIN").requestMatchers("/index").hasAuthority("USER")
-				.requestMatchers("/register", "/resources/**","/static/**", "/css/**", "/static/img/**").permitAll()
+				.hasAuthority("ADMIN").requestMatchers("/profile").hasAuthority("USER")
+				.requestMatchers("/register","/index", "/resources/**","/static/**", "/css/**", "/static/img/**").permitAll()
 				.anyRequest().authenticated())
 		
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
@@ -48,6 +48,7 @@ public class SecurityConfig {
 				.logoutSuccessUrl("/login?logout").permitAll());
 		
 		return http.build();
+
 	}
 	
 	@Autowired

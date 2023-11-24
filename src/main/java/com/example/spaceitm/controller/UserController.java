@@ -40,11 +40,11 @@ public class UserController {
 		return "login";
 	}
 
-	@GetMapping("index")
+	@GetMapping("/profile")
 	public String userPage (Model model, Principal principal) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
-		return "index";
+		return "profile";
 	}
 
 	@GetMapping("admin-page")

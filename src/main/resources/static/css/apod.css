@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url(
+    'https://img.freepik.com/free-photo/beautiful-shot-blue-purple-sky-filled-with-starts_181624-24991.jpg?w=826&t=st=1698915135~exp=1698915735~hmac=1e7060fcad7a0d9b6c653cc95b3ce32ffd49315de670df2c2520449a2d251a21') no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+h4 {
+    color: #ffffff;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width: 1000px;
+    height: 1000px;
+}
+
+.main-header {
+    margin: 0 15px;
+    padding-top: 10px;
+}
+
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-buttons-1,
+.header-buttons-2 {
+    display: flex;
+    column-gap: 15px;
+}
+
+.header-button {
+    padding: 5px 10px;
+    background-color: #9048F0;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 30px;
+    border: 0;
+}
+
+
+

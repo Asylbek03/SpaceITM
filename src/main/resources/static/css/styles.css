@@ -52,7 +52,11 @@ input {
     display: flex;
     column-gap: 15px;
 }
-
+.logout-button {
+    color: #45b6fe;
+    display: flex;
+    column-gap: 15px;
+}
 .header-button {
     padding: 5px 10px;
     background-color: #9048F0;

@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="../css/epic.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>EPIC Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var today = new Date();
+            var formattedDate = today.toISOString().split('T')[0];
+            $("#dateInput").val(formattedDate);
+        });
+    </script>
+</head>
+
+<body>
+
+
+<div th:object="${epicResponse}">
+    <div class="main-header">
+        <div class="header-buttons-1">
+            <a th:href="@{/profile}">
+                <button class="header-button">
+                    На главную
+                </button>
+            </a>
+        </div>
+    </div>
+    <h2>Earth Polychromatic Imaging Camera (EPIC)</h2>
+    <p>Date: <input type="date" id="dateInput" th:value="${epicResponse.epicDate}" /></p>
+    <img th:src="'https://epic.gsfc.nasa.gov/archive/natural/' + ${epicResponse.getFormattedEpicDate()} + '/jpg/' + ${epicResponse.epicImage} + '.jpg'" class="img-fluid" alt="Image" />
+
+
+</div>
+
+</body>
+
+</html>

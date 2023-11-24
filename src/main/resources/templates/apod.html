@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/apod.css">
+    <title>Photo of day</title>
+</head>
+
+<body>
+<div th:object="${apodResponse}">
+    <div class="main-header">
+        <div class="header-buttons-1">
+            <a th:href="@{/profile}">
+                <button class="header-button">
+                    На главную
+                </button>
+            </a>
+        </div>
+    </div>
+    <h1>Фото дня</h1>
+    <h4><span th:text="${apodResponse.apodTitle}"></span></h4>
+    <h4>Description: <span th:text="${(apodResponse.apodExplation)}"></span></h4>
+    <img th:src="${apodResponse.apodHdUrl}" class="img-fluid" alt="Image">
+</div>
+
+</body>
+
+</html>
