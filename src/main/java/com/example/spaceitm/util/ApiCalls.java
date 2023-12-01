@@ -3,11 +3,13 @@ package com.example.spaceitm.util;
 
 import com.example.spaceitm.model.Apod;
 import com.example.spaceitm.model.Epic;
+import com.example.spaceitm.model.NewsArticle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -144,6 +147,41 @@ public class ApiCalls {
         }
 
 
+    }
+
+
+    public String news_ApiCall(double requestID) {
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpResponse response;
+
+        log.info("RequestID: {} - NEWS REQUEST - News Request API CALL : {}", requestID, News_Api_URL);
+
+        try {
+            HttpGet request = new HttpGet(News_Api_URL);
+            response = client.execute(request);
+
+            if (response != null && response.getStatusLine().getStatusCode() == 200) {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    result.append(line);
+                }
+                EntityUtils.consume(response.getEntity()); // Ensure response entity is fully consumed
+                log.info("RequestID: {} - NEWS REQUEST - Get News Call : Response: {}", requestID, result);
+                return result.toString();
+            } else {
+                log.error("RequestID: {} - NEWS REQUEST - Error Fetching response from News API. Status code: {}",
+                        requestID, response != null ? response.getStatusLine().getStatusCode() : "unknown");
+                return null;
+            }
+        } catch (Exception e) {
+            log.error("RequestID: {} - NEWS REQUEST - Exception: Could not retrieve News Information from API : {}",
+                    requestID, e.toString());
+            return null;
+        } finally {
+            client.getConnectionManager().shutdown();
+        }
     }
 
 

@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/news.css">
+    <title>News</title>
 </head>
+
 <body>
-  <title> News</title>
+
+<div class="main-header">
+    <div class="header-buttons-1">
+        <a th:href="@{/profile}">
+            <button class="header-button">
+                На главную
+            </button>
+        </a>
+    </div>
+</div>
+<h1>Новости</h1>
+
+<table id="TableData" style="margin-bottom: 20px; align-content: center">
+    <tbody class="ui-table-tbody">
+    <tr th:each="newsArticle : ${newsArticles}" style="align-content: center">
+        <td style="align-items: center">
+            <img th:src="${newsArticle.imageUrl}" class="img-fluid" alt="Image" style="width: 40%; height: 40%; ">
+            <h2 th:text="${newsArticle.title}"></h2>
+            <p th:text="${newsArticle.summary}"></p>
+            <p th:text="'Дата публикации: ' + ${newsArticle.publishedAt}"></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
+
 </html>

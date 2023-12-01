@@ -9,4 +9,6 @@ public class Constants {
     public static final String EPIC_GET_BY_DATE = "https://api.nasa.gov/EPIC/api/natural/all?api_key=ZAHIwPnrLy9TdLDLe3cPLVYau4trxcAXGI54dAhJ";
 
     public static final String MARS_ROVER_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=ZAHIwPnrLy9TdLDLe3cPLVYau4trxcAXGI54dAhJ";
+
+    public static final String News_Api_URL = "https://api.spaceflightnewsapi.net/v4/articles/";
 }

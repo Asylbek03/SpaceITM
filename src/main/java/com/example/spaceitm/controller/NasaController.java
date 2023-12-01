@@ -4,20 +4,20 @@ import com.example.spaceitm.model.*;
 import com.example.spaceitm.util.ApiCalls;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class NasaController {
@@ -109,6 +109,59 @@ public class NasaController {
 
         return mav;
     }
+
+
+    @RequestMapping(value = "/news")
+    public ModelAndView news() throws JsonMappingException, JsonProcessingException, JSONException, ParseException {
+        ModelAndView mav = null;
+        double requestID = Math.floor((Math.random() * 1000) * 100) / 100;
+        mav = new ModelAndView("news");
+
+        String newsApiResponse = apiCallObj.news_ApiCall(requestID);
+
+        JSONObject obj = new JSONObject(newsApiResponse);
+
+        if (obj.has("results")) {
+            JSONArray articlesArray = obj.getJSONArray("results");
+
+            List<NewsArticle> newsArticles = new ArrayList<>();
+
+            for (int i = 0; i < 10; i++) {
+                JSONObject articleObject = articlesArray.getJSONObject(i);
+                NewsArticle newsArticle = new NewsArticle();
+
+                newsArticle.setId(articleObject.getInt("id"));
+                newsArticle.setTitle(articleObject.getString("title"));
+                newsArticle.setUrl(articleObject.getString("url"));
+                newsArticle.setImageUrl(articleObject.getString("image_url"));
+                newsArticle.setNewsSite(articleObject.getString("news_site"));
+                newsArticle.setSummary(articleObject.getString("summary"));
+                newsArticle.setPublishedAt(articleObject.getString("published_at"));
+                newsArticle.setUpdatedAt(articleObject.getString("updated_at"));
+                newsArticle.setFeatured(articleObject.getBoolean("featured"));
+
+
+
+                newsArticles.add(newsArticle);
+            }
+
+            log.info("RequestID: {} - NEWS REQUEST - Response - {}", requestID, Arrays.toString(newsArticles.toArray()));
+            mav.addObject("newsArticles", newsArticles);
+        } else {
+            log.error("RequestID: {} - NEWS REQUEST - Error: 'articles' key not found in the news API response", requestID);
+        }
+
+        return mav;
+    }
+
+
+
+
+
+
+
+
+
 
 
 
