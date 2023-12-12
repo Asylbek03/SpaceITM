@@ -1,6 +1,6 @@
 package com.example.spaceitm.model;
 
-public class NewsArticle  {
+public class NewsArticle {
 
     private int id;
     private String title;
@@ -13,10 +13,11 @@ public class NewsArticle  {
     private boolean featured;
 
 
-    public NewsArticle() {}
+    public NewsArticle() {
+    }
 
     public NewsArticle(int id, String title, String url, String imageUrl, String newsSite, String summary,
-                         String publishedAt, String updatedAt, boolean featured) {
+                       String publishedAt, String updatedAt, boolean featured) {
         this.id = id;
         this.title = title;
         this.url = url;

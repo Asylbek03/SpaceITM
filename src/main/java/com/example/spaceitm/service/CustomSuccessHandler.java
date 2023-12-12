@@ -12,24 +12,23 @@ import java.io.IOException;
 @Service
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
-	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
-		// TODO Auto-generated method stub
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                        Authentication authentication) throws IOException, ServletException {
+        // TODO Auto-generated method stub
 
-		var authourities = authentication.getAuthorities();
-		var roles = authourities.stream().map(r -> r.getAuthority()).findFirst();
+        var authourities = authentication.getAuthorities();
+        var roles = authourities.stream().map(r -> r.getAuthority()).findFirst();
 
-		if (roles.orElse("").equals("ADMIN")) {
-			response.sendRedirect("/admin-page");
-		} else if (roles.orElse("").equals("USER")) {
-			response.sendRedirect("/profile");
-		} else {
-			response.sendRedirect("/error");
-		}
+        if (roles.orElse("").equals("ADMIN")) {
+            response.sendRedirect("/admin-page");
+        } else if (roles.orElse("").equals("USER")) {
+            response.sendRedirect("/profile");
+        } else {
+            response.sendRedirect("/error");
+        }
 
 
-
-	}
+    }
 
 }

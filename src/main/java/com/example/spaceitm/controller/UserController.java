@@ -16,42 +16,43 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-	@Autowired
-	UserDetailsService userDetailsService;
+    @Autowired
+    UserDetailsService userDetailsService;
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
 
-	@GetMapping("/register")
-	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto) {
-		return "register";
-	}
+    @GetMapping("/register")
+    public String getRegistrationPage(@ModelAttribute("user") UserDto userDto) {
+        return "register";
+    }
 
-	@PostMapping("/register")
-	public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
-		userService.save(userDto);
-		model.addAttribute("message", "Регистрация успешно!");
-		return "register";
-	}
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
+        userService.save(userDto);
+        model.addAttribute("message", "Регистрация успешно!");
+        return "register";
+    }
 
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
-	@GetMapping("/profile")
-	public String userPage (Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		return "profile";
-	}
+    @GetMapping("/profile")
+    public String userPage(Model model, Principal principal) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+        model.addAttribute("user", userDetails);
+        return "profile";
+    }
 
-	@GetMapping("admin-page")
-	public String adminPage (Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		return "admin";
-	}
+    @GetMapping("admin-page")
+    public String adminPage(Model model, Principal principal) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+        model.addAttribute("user", userDetails);
+        return "admin";
+    }
+
 
 }

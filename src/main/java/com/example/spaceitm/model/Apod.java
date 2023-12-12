@@ -11,7 +11,8 @@ public class Apod {
     private String apodTitle;
     private String apodUrl;
 
-    public Apod() {}
+    public Apod() {
+    }
 
 
     public Apod(String apoddt, String apodExplation, String apodHdUrl, String apodMedia_type, String apodTitle,
@@ -78,8 +79,6 @@ public class Apod {
         return "Apod [apoddate=" + apodDate + ", apodExplation=" + apodExplation + ", apodHdUrl=" + apodHdUrl
                 + ", apodMedia_type=" + apodMedia_type + ", apodTitle=" + apodTitle + ", apodUrl=" + apodUrl + "]";
     }
-
-
 
 
 }

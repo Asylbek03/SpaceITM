@@ -7,7 +7,8 @@ public class MarsRoverCamera {
     private String name;
     private String fullName;
 
-    public MarsRoverCamera() {}
+    public MarsRoverCamera() {
+    }
 
     public MarsRoverCamera(Integer id, String name, String fullName) {
         super();
@@ -44,7 +45,6 @@ public class MarsRoverCamera {
     public String toString() {
         return "MarsRoverCamera [id=" + id + ", name=" + name + ", fullName=" + fullName + "]";
     }
-
 
 
 }

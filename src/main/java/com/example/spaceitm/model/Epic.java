@@ -10,7 +10,8 @@ public class Epic {
     private String epicImage;
     private String epicCaption;
 
-    public Epic() {}
+    public Epic() {
+    }
 
     public Epic(String epicDate, String epicImage, String epicCaption) {
         super();

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - SpaceITM</title>
+    <link rel="stylesheet" href="../css/forum.css">
+</head>
+<body>
+
+<header>
+    <a th:href="@{/profile}">
+        <button class="header-button">
+            На главную
+        </button>
+    </a>
+    <h1>SpaceITM Форум</h1>
+    <p>Добро пожаловать в сообщество любителей космоса!</p>
+</header>
+
+<main>
+
+
+    <ul>
+        <li class="topic" th:each="topic : ${topics}">
+            <a th:text="${topic.title}" th:href="@{'/topic/' + ${topic.id}}">
+            </a>
+            <p th:text=" 'Автор: ' + ${topic.author.getFullname} + ' Дата публикации: ' + ${topic.createdDate}"> </p>
+        </li>
+    </ul>
+
+    <div class="create-topic">
+        <h2>Создать новую тему</h2>
+        <form action="/create-topic" method="post">
+            <label for="title">Название темы:</label>
+            <input type="text" name="title" required>
+            <label for="content">Содержимое:</label>
+            <textarea name="content" rows="5"></textarea>
+            <button type="submit">Создать тему</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2023 SpaceITM. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -27,10 +27,9 @@ public class NasaController {
 
 
     @RequestMapping(value = "/apod")
-    public ModelAndView apod() throws JsonMappingException, JsonProcessingException, JSONException, ParseException
-    {
+    public ModelAndView apod() throws JsonMappingException, JsonProcessingException, JSONException, ParseException {
         ModelAndView mav = null;
-        double requestID =  Math.floor((Math.random() * 1000)*100) / 100;
+        double requestID = Math.floor((Math.random() * 1000) * 100) / 100;
         mav = new ModelAndView("apod");
         log.info("RequestID: {} - APOD REQUEST - STARTED", requestID);
 
@@ -38,7 +37,7 @@ public class NasaController {
         Apod apodResponse = apiCallObj.apod_ApiCall(requestID);
 
         log.info("RequestID: {} - APOD REQUEST - Response - {}", requestID, apodResponse.toString());
-        mav.addObject("apodResponse",apodResponse);
+        mav.addObject("apodResponse", apodResponse);
 
         return mav;
     }
@@ -66,7 +65,6 @@ public class NasaController {
 
         return mav;
     }
-
 
 
     @RequestMapping(value = "/mars")
@@ -105,7 +103,7 @@ public class NasaController {
 
         }
         log.info("RequestID: {} - MARS_ROVER REQUEST - Response - {}", requestID, Arrays.toString(marsRoverPhotos.toArray()));
-        mav.addObject("marsRoverPhotos",marsRoverPhotos);
+        mav.addObject("marsRoverPhotos", marsRoverPhotos);
 
         return mav;
     }
@@ -141,7 +139,6 @@ public class NasaController {
                 newsArticle.setFeatured(articleObject.getBoolean("featured"));
 
 
-
                 newsArticles.add(newsArticle);
             }
 
@@ -153,17 +150,6 @@ public class NasaController {
 
         return mav;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

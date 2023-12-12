@@ -10,7 +10,8 @@ public class MarsRoverPhotos {
     private MarsRoverCamera marsRoverCamera;
     private MarsRoverInfo marsRoverInfo;
 
-    public MarsRoverPhotos() {}
+    public MarsRoverPhotos() {
+    }
 
     public Integer getId() {
         return id;

@@ -8,8 +8,8 @@ public class MarsRoverInfo {
     private String launch_date;
     private String status;
 
-    public MarsRoverInfo() {}
-
+    public MarsRoverInfo() {
+    }
 
 
     public MarsRoverInfo(Integer id, String name, String landing_date, String launch_date, String status) {
@@ -20,7 +20,6 @@ public class MarsRoverInfo {
         this.launch_date = launch_date;
         this.status = status;
     }
-
 
 
     public Integer getId() {
@@ -68,7 +67,6 @@ public class MarsRoverInfo {
         return "MarsRoverInfo [id=" + id + ", name=" + name + ", landing_date=" + landing_date + ", launch_date="
                 + launch_date + ", status=" + status + "]";
     }
-
 
 
 }

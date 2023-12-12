@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum - SpaceITM</title>
+  <link rel="stylesheet" href="../css/topic.css">
+</head>
+<body>
+<h1>Темы</h1>
+<p>Ваша тема создана!</p>
+<p>Посмотрите различные темы на форуме SpaceITM</p>
+
+<ul>
+  <li class="topic" th:each="topic : ${topics}">
+    <a th:text="${topic.title}" th:href="@{'/topic/' + ${topic.id}}">
+    </a>
+    <p th:text=" 'Автор: ' + ${topic.author.getFullname} + ' Дата публикации: ' + ${topic.createdDate}"> </p>
+  </li>
+</ul>
+
+<a th:href="@{/forum}">
+  <button class="header-button">
+    Обратно на форум
+  </button>
+</a>
+
+</body>
+</html>

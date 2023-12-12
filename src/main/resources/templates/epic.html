@@ -28,8 +28,9 @@
         </div>
     </div>
     <h2>Earth Polychromatic Imaging Camera (EPIC)</h2>
-    <p>Date: <input type="date" id="dateInput" th:value="${epicResponse.epicDate}" /></p>
-    <img th:src="'https://epic.gsfc.nasa.gov/archive/natural/' + ${epicResponse.getFormattedEpicDate()} + '/jpg/' + ${epicResponse.epicImage} + '.jpg'" class="img-fluid" alt="Image" />
+    <p>Date: <input type="date" id="dateInput" th:value="${epicResponse.epicDate}"/></p>
+    <img th:src="'https://epic.gsfc.nasa.gov/archive/natural/' + ${epicResponse.getFormattedEpicDate()} + '/jpg/' + ${epicResponse.epicImage} + '.jpg'"
+         class="img-fluid" alt="Image"/>
 
 
 </div>

@@ -28,8 +28,7 @@ public class ApiCalls {
     Logger log = LoggerFactory.getLogger(ApiCalls.class);
 
 
-    public Apod apod_ApiCall(double requestID)
-    {
+    public Apod apod_ApiCall(double requestID) {
         Apod apodValue = new Apod();
         HttpClient client = HttpClientBuilder.create().build();
         HttpResponse response = null;
@@ -37,12 +36,10 @@ public class ApiCalls {
 
         log.info("RequestID: {} - APOD REQUEST - APOD Request API CALL : {}", requestID, getapodCall);
         HttpGet request = new HttpGet(getapodCall);
-        try
-        {
+        try {
             response = client.execute(request);
-            if(response!=null)
-            {
-                BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
+            if (response != null) {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
                 String responseline = rd.readLine();
                 log.info("RequestID: {} - APOD REQUEST - Get APOD Call : Response: {}", requestID, responseline);
 
@@ -57,15 +54,12 @@ public class ApiCalls {
                 apodValue.setApodUrl((String) map.get("url"));
 
                 return apodValue;
-            }
-            else
-            {
+            } else {
                 log.error("RequestID: {} - APOD REQUEST - Error Fetching response from APOD API", requestID);
                 return null;
             }
-        }
-        catch (Exception e) {
-            log.info("RequestID: {} - APOD REQUEST - Exception: Could not retrive APOD Information from API : {}",requestID, e.toString());
+        } catch (Exception e) {
+            log.info("RequestID: {} - APOD REQUEST - Exception: Could not retrive APOD Information from API : {}", requestID, e.toString());
             return null;
         }
 
@@ -89,7 +83,8 @@ public class ApiCalls {
                 log.info("RequestID: {} - EPIC REQUEST - Get EPIC Call : Response: {}", requestID, responseline);
 
                 ObjectMapper mapper = new ObjectMapper();
-                List<Map<String, Object>> list = mapper.readValue(responseline, new TypeReference<List<Map<String, Object>>>() {});
+                List<Map<String, Object>> list = mapper.readValue(responseline, new TypeReference<List<Map<String, Object>>>() {
+                });
                 if (!list.isEmpty()) {
 
                     Map<String, Object> map = list.get(0);
@@ -111,38 +106,29 @@ public class ApiCalls {
     }
 
 
-
-
-    public String marsrover_ApiCall(double requestID)
-    {
+    public String marsrover_ApiCall(double requestID) {
         HttpClient client = HttpClientBuilder.create().build();
         HttpResponse response = null;
         String getMarsRoverCall = MARS_ROVER_URL;
 
         log.info("RequestID: {} - MARS_ROVER REQUEST - MARS_ROVER Request API CALL : {}", requestID, getMarsRoverCall);
         HttpGet request = new HttpGet(getMarsRoverCall);
-        try
-        {
+        try {
             response = client.execute(request);
-            if(response!=null)
-            {
-                BufferedReader rd = new BufferedReader (new InputStreamReader(response.getEntity().getContent()));
+            if (response != null) {
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
                 String responseline = rd.readLine();
                 //log.info("RequestID: {} - MARS_ROVER REQUEST - Get MARS_ROVER Call : Response: {}", requestID, responseline);
 
 
-
                 return responseline;
 
-            }
-            else
-            {
+            } else {
                 log.error("RequestID: {} - MARS_ROVER REQUEST - Error Fetching response from MARS_ROVER API", requestID);
                 return null;
             }
-        }
-        catch (Exception e) {
-            log.info("RequestID: {} - MARS_ROVER REQUEST - Exception: Could not retrive MARS_ROVER Information from API : {}",requestID, e.toString());
+        } catch (Exception e) {
+            log.info("RequestID: {} - MARS_ROVER REQUEST - Exception: Could not retrive MARS_ROVER Information from API : {}", requestID, e.toString());
             return null;
         }
 

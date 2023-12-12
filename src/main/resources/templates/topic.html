@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Forum - SpaceITM</title>
+    <link rel="stylesheet" href="../css/topic.css">
+</head>
+<body>
+<header>
+    <a href="/profile" class="header-button">На главную</a>
+    <a href="/forum" class="header-button">Обратно на форум</a>
+</header>
+
+<div class="forum-container">
+    <h1 class="topic-title" th:text="${topic.title}"></h1>
+    <p class="author-info" th:text="'Автор: ' + ${topic.author.getFullname}"></p>
+    <p class="date-info" th:text="'Дата публикации: ' + ${topic.createdDate}"></p>
+    <div class="topic-content" th:utext="${topic.content}"></div>
+
+    <h3 class="comments-title">Комментарий</h3>
+
+    <ul class="comments-list" id="comments-list">
+        <li th:each="comment : ${comments}" class="comment-item">
+            <p class="author-info" th:text="'@' + ${comment.author.fullname}"></p>
+            <p class="comment-date" th:text="${comment.createdDate}"></p>
+            <p class="comment-content" th:text="${comment.content}"></p>
+        </li>
+    </ul>
+
+    <form th:action="@{'/topic/' + ${topic.id} + '/comment'}" method="post" class="comment-form">
+        <label for="content" class="comment-label">Комментарий:</label>
+        <textarea name="content" rows="5" class="comment-textarea"></textarea>
+        <button type="submit" class="comment-submit">Отправить</button>
+    </form>
+</div>
+</body>
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var commentDateElements = document.querySelectorAll(".comment-date");
+
+        commentDateElements.forEach(function (element) {
+            var commentDate = new Date(element.textContent);
+            var currentDate = new Date();
+            var timeDifference = currentDate - commentDate;
+
+            var seconds = Math.floor(timeDifference / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+            var months = Math.floor(days / 30);
+            var years = Math.floor(months / 12);
+
+            var timeAgo;
+            if (seconds < 60) {
+                timeAgo = seconds + " секунд назад";
+            } else if (minutes < 60) {
+                timeAgo = minutes + " минут назад";
+            } else if (hours < 24) {
+                timeAgo = hours + " часов назад";
+            } else if (days < 30) {
+                timeAgo = days + " дней назад";
+            } else if (months < 12) {
+                timeAgo = months + " месяцев назад";
+            } else {
+                timeAgo = years + " лет назад";
+            }
+
+            element.textContent = timeAgo;
+        });
+    });
+</script>
